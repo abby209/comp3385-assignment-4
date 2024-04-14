@@ -14,6 +14,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('v1/movies')->group(function () {
-    Route::get('/', [MovieController::class, 'index']);  // GET request to /api/v1/movies
-    Route::post('/', [MovieController::class, 'store']); // POST request to /api/v1/movies
+    Route::get('/movies', [MovieController::class, 'index']);  // GET request to /api/v1/movies
+    Route::post('/movies', [MovieController::class, 'store']); // POST request to /api/v1/movies
 });
