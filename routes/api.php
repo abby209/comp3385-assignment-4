@@ -4,16 +4,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 
+
 Route::get('/user', function (Request $request) {
-    if ($request->user()) {
-        return response()->json($request->user());
-    } else {
-      // Handle unauthenticated user case
-        return response()->json(['error' => 'Unauthorized'], 401);
-    }
+    return $request->user();
 })->middleware('auth:sanctum');
 
-Route::prefix('v1/movies')->group(function () {
-    Route::get('/movies', [MovieController::class, 'index']);  // GET request to /api/v1/movies
-    Route::post('/movies', [MovieController::class, 'store']); // POST request to /api/v1/movies
+Route::middleware('auth:api')->group(function () {
+    // Protected routes
+    Route::get('/api/v1/movies', [MovieController::class, 'index']);
+    Route::post('/api/v1/movies', [MovieController::class, 'store']);
 });

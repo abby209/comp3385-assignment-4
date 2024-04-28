@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AboutView from "../Pages/AboutView.vue";
+import AddMovieView from '../Pages/AddMovieView';
 import HomeView from "../Pages/HomeView.vue";
 
 const router = createRouter({
@@ -12,6 +13,11 @@ const router = createRouter({
         {
             path: '/about',
             component: AboutView
+        },
+        {
+            path: '/movies/create',
+            name: 'add-movie',
+            component: AddMovieView,
         }
     ]
 })
